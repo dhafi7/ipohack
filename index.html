@@ -1,0 +1,436 @@
+<!DOCTYPE html>
+<html lang="id" data-theme="dark">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description"
+    content="ipohack - Platform analisis, rating, dan diskusi interaktif untuk perusahaan yang akan melakukan Go Public / IPO di Bursa Efek Indonesia (BEI).">
+  <title>ipohack - Platform Rating & Analisis e-IPO Indonesia</title>
+
+  <!-- CSS Stylesheets -->
+  <link rel="stylesheet" href="style.css">
+
+  <!-- FontAwesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+
+<body>
+  <div class="app-container">
+
+    <!-- Navigation Header -->
+    <header>
+      <div class="logo-container">
+        <div class="logo-icon">i</div>
+        <span class="logo-text">ipohack</span>
+      </div>
+
+      <nav>
+        <a href="#dashboard" class="nav-link active" data-view="dashboard">
+          <i class="fa-solid fa-chart-line"></i> Dashboard
+        </a>
+        <a href="#underwriters" class="nav-link" data-view="underwriters">
+          <i class="fa-solid fa-building-columns"></i> Underwriter
+        </a>
+
+        <a href="#education" class="nav-link" data-view="education">
+          <i class="fa-solid fa-graduation-cap"></i> Panduan IPO
+        </a>
+
+        <button id="themeToggleBtn" class="theme-toggle-btn" title="Ganti Tema">
+          <i class="fa-solid fa-sun" id="themeSunIcon" style="display: none;"></i>
+          <i class="fa-solid fa-moon" id="themeMoonIcon"></i>
+        </button>
+      </nav>
+    </header>
+
+    <!-- Main Workspace -->
+    <main>
+
+      <!-- HERO BANNER -->
+      <section class="hero" id="heroBanner">
+        <h1>Temukan IPO Terbaik di <span>Indonesia</span></h1>
+        <p>Analisis rasio keuangan, beri skor, bandingkan emiten, dan diskusikan peluang investasi e-IPO bersama
+          komunitas investor ritel.</p>
+      </section>
+
+      <!-- VIEW: DASHBOARD (Default) -->
+      <div id="view-dashboard" class="view-panel">
+        <div class="dashboard-layout">
+
+          <!-- Sidebar Filters -->
+          <aside class="filters-sidebar">
+            <!-- Market Condition Widget -->
+            <div class="filter-group market-control-card">
+              <div class="filter-title"><i class="fa-solid fa-cloud-sun" style="color: var(--warning);"></i> Kondisi
+                Market</div>
+              <div class="market-selector-wrapper">
+                <select id="marketConditionSelect" class="market-select">
+                  <option value="bullish" selected>Bullish (Pasar Bullish)</option>
+                  <option value="neutral">Netral (Konsolidasi)</option>
+                  <option value="bearish">Bearish (Pasar Bearish)</option>
+                </select>
+              </div>
+              <p class="market-tip-text">Mengubah kondisi pasar akan mengkalkulasi ulang skor rating semua emiten secara
+                real-time.</p>
+            </div>
+
+            <div class="filter-group">
+              <div class="filter-title">Cari Emiten</div>
+              <div class="search-input-wrapper">
+                <input type="text" id="searchInput" class="search-input" placeholder="Kode saham, nama emiten...">
+                <i class="fa-solid fa-magnifying-glass search-icon"></i>
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <div class="filter-title">Status IPO</div>
+              <div class="filter-pill-container" id="statusFilterPills">
+                <button class="filter-pill active" data-status="all">Semua</button>
+                <button class="filter-pill" data-status="book-building">Book Building</button>
+                <button class="filter-pill" data-status="offering">Offering</button>
+                <button class="filter-pill" data-status="allocation">Allotment</button>
+                <button class="filter-pill" data-status="listed">Listed</button>
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <div class="filter-title">Sektor Usaha</div>
+              <div id="sectorCheckboxes">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <div class="filter-group">
+              <div class="filter-title">Penjamin Emisi (Underwriter)</div>
+              <div id="underwriterCheckboxes">
+                <!-- Dynamically populated -->
+              </div>
+            </div>
+
+            <button id="resetFiltersBtn" class="submit-rating-btn"
+              style="background-color: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--border-color); margin-top: 1rem;">
+              <i class="fa-solid fa-rotate-left"></i> Reset Filter
+            </button>
+          </aside>
+
+          <!-- IPO Cards Display -->
+          <section class="ipo-grid-section">
+            <div class="ipo-list-header">
+              <div class="ipo-count" id="ipoCountText">Menampilkan 0 Perusahaan IPO</div>
+              <div>
+                <select id="sortSelect" class="sort-dropdown">
+                  <option value="default">Urutan Default</option>
+                  <option value="rating-desc">Rating: Tertinggi ke Terendah</option>
+                  <option value="price-asc">Harga: Terendah ke Tertinggi</option>
+                  <option value="price-desc">Harga: Tertinggi ke Terendah</option>
+                  <option value="shares-desc">Saham Ditawarkan: Terbanyak</option>
+                </select>
+              </div>
+            </div>
+
+            <div class="ipo-grid" id="ipoCardsGrid">
+              <!-- Dynamically populated -->
+            </div>
+
+            <!-- Backtesting Rating vs Market Performance -->
+            <div class="backtest-section">
+              <h3 class="section-title-premium"><i class="fa-solid fa-square-check" style="color: var(--primary);"></i>
+                Evaluasi Akurasi Sistem Rating (Backtesting)</h3>
+              <p style="color: var(--text-secondary); font-size: 0.9rem; margin-bottom: 1.25rem;">
+                Tabel di bawah membandingkan antara <b>Skor Rating IPOHack</b> (Kalkulasi Formula Resmi) dengan
+                <b>Performa Perdana Pasar (Hari ke-1)</b> untuk emiten yang sudah resmi melantai di Bursa Efek Indonesia
+                (BEI). Ini mengukur seberapa akurat sistem rating kami.
+              </p>
+              <div class="comparison-table-wrapper">
+                <table class="compare-table" id="backtestTable">
+                  <thead>
+                    <tr>
+                      <th>Emiten</th>
+                      <th>Sektor</th>
+                      <th>Owner / Pengendali</th>
+                      <th style="text-align: center;">Rating IPOHack</th>
+                      <th style="text-align: center;">Performa Asli Day-1</th>
+                      <th style="text-align: center;">Status Prediksi</th>
+                    </tr>
+                  </thead>
+                  <tbody id="backtestTableBody">
+                    <!-- Dynamically populated from listed IPOs in database -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+        </div>
+      </div>
+
+      <!-- VIEW: UNDERWRITERS -->
+      <div id="view-underwriters" class="view-panel" style="display: none;">
+        <h2 class="section-title-premium"><i class="fa-solid fa-building-columns"></i> Track Record Underwriter
+          Sekuritas</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">
+          Analisis performa historis penjamin emisi efek (underwriter) ketika mengawal perdana IPO emiten mereka. Cek
+          statistik frekuensi Auto Reject Atas (ARA) dan Auto Reject Bawah (ARB) di bawah ini.
+        </p>
+
+        <div class="underwriters-layout">
+          <!-- Search for underwriters -->
+          <div class="uw-search-bar-wrapper">
+            <div class="search-input-wrapper" style="max-width: 400px; margin-bottom: 1.5rem;">
+              <input type="text" id="uwSearchInput" class="search-input" placeholder="Cari nama sekuritas atau kode...">
+              <i class="fa-solid fa-magnifying-glass search-icon"></i>
+            </div>
+          </div>
+
+          <div class="underwriters-grid" id="underwritersListGrid">
+            <!-- Dynamically populated underwriter cards -->
+          </div>
+        </div>
+      </div>
+
+
+
+
+
+      <!-- VIEW: EDUCATION -->
+      <div id="view-education" class="view-panel" style="display: none;">
+        <h2 class="section-title-premium">Panduan Berinvestasi di e-IPO</h2>
+        <p style="color: var(--text-secondary); margin-bottom: 1.5rem;">Panduan dasar alur partisipasi IPO di Bursa Efek
+          Indonesia serta indikator penting yang harus dianalisis oleh investor ritel sebelum melakukan pesanan.</p>
+
+        <div class="edu-grid">
+          <div class="edu-card">
+            <div class="edu-step-num">01</div>
+            <h3 class="edu-title">Book Building</h3>
+            <p class="edu-text">Tahap awal di mana emiten menawarkan harga indikatif. Investor dapat memesan harga di
+              dalam rentang tersebut. Di tahap ini, minat pasar diukur untuk menetapkan harga final.</p>
+          </div>
+          <div class="edu-card">
+            <div class="edu-step-num">02</div>
+            <h3 class="edu-title">Public Offering</h3>
+            <p class="edu-text">Masa penawaran umum setelah harga IPO final ditetapkan. Investor dapat melakukan
+              pemesanan langsung melalui portal e-ipo.co.id dengan harga yang telah diputuskan.</p>
+          </div>
+          <div class="edu-card">
+            <div class="edu-step-num">03</div>
+            <h3 class="edu-title">Allocation & Allotment</h3>
+            <p class="edu-text">Proses penjatahan saham. Jika penawaran mengalami kelebihan permintaan (oversubscribed),
+              investor ritel akan menerima alokasi saham yang disesuaikan secara proporsional.</p>
+          </div>
+          <div class="edu-card">
+            <div class="edu-step-num">04</div>
+            <h3 class="edu-title">Listing Date</h3>
+            <p class="edu-text">Hari pertama perdagangan saham di pasar reguler Bursa Efek Indonesia. Di sini, harga
+              saham akan berfluktuasi bebas sesuai mekanisme supply dan demand.</p>
+          </div>
+        </div>
+
+        <div
+          style="background-color: var(--bg-secondary); border: 1px solid var(--border-color); padding: 2rem; border-radius: var(--border-radius); margin-top: 2rem;">
+          <h3 style="font-family: var(--font-title); margin-bottom: 1rem;"><i class="fa-solid fa-scale-balanced"
+              style="color: var(--primary);"></i> 4 Indikator Analisis IPO Ritel</h3>
+          <div
+            style="display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 1.5rem; margin-top: 1rem;">
+            <div>
+              <h4
+                style="font-family: var(--font-title); font-size: 1rem; margin-bottom: 0.25rem; color: var(--text-primary);">
+                1. Penggunaan Dana (Use of Proceeds)</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">Hindari IPO yang mayoritas dananya (>50%)
+                dipakai melunasi utang. Cari yang mengutamakan belanja modal (Capex) ekspansif.</p>
+            </div>
+            <div>
+              <h4
+                style="font-family: var(--font-title); font-size: 1rem; margin-bottom: 0.25rem; color: var(--text-primary);">
+                2. Reputasi Underwriter</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">Lihat historis pergerakan saham hari pertama
+                (ARA/ARB) yang dikawal underwriter tersebut pada IPO-IPO sebelumnya.</p>
+            </div>
+            <div>
+              <h4
+                style="font-family: var(--font-title); font-size: 1rem; margin-bottom: 0.25rem; color: var(--text-primary);">
+                3. Tren Pendapatan & Profit</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">Pastikan pendapatan bertumbuh konsisten.
+                Perusahaan rugi masih wajar di sektor teknologi asal pertumbuhan revenue kencang.</p>
+            </div>
+            <div>
+              <h4
+                style="font-family: var(--font-title); font-size: 1rem; margin-bottom: 0.25rem; color: var(--text-primary);">
+                4. Rasio Valuasi Pasar</h4>
+              <p style="font-size: 0.85rem; color: var(--text-secondary);">Bandingkan rasio Price to Earnings (P/E) dan
+                Price to Book Value (P/B) calon emiten dengan emiten sektor sejenis yang sudah melantai.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </main>
+
+    <!-- DETAIL MODAL -->
+    <div id="ipoDetailModal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <div class="company-badge">
+            <div class="company-logo-placeholder" id="modalLogo">NUTR</div>
+            <div class="company-title-wrapper">
+              <div class="company-ticker" id="modalTicker">NUTR</div>
+              <div class="company-name" id="modalName">PT Nusantara Energy Green Tbk</div>
+            </div>
+          </div>
+          <div style="display: flex; align-items: center; gap: 1rem;">
+            <span id="modalStatusBadge" class="status-badge status-book-building">Book Building</span>
+            <button id="modalCloseBtn" class="modal-close-btn">&times;</button>
+          </div>
+        </div>
+
+        <div class="modal-body">
+          <div class="modal-grid-layout">
+
+            <!-- Modal Left Side (Info, Charts, Use of Proceeds) -->
+            <div>
+              <h3 class="section-title-premium"><i class="fa-solid fa-circle-info"></i> Profil Emiten</h3>
+              <p id="modalDescription"
+                style="color: var(--text-secondary); font-size: 0.95rem; margin-bottom: 1.5rem; text-align: justify; line-height: 1.6;">
+                Profil emiten dimuat di sini...
+              </p>
+
+              <h3 class="section-title-premium"><i class="fa-solid fa-chart-simple"></i> Kinerja Keuangan (Miliar Rp)
+              </h3>
+              <div class="financial-chart-container">
+                <div class="chart-visual-wrapper" id="chartVisualWrapper">
+                  <!-- Twin bar columns dynamically generated -->
+                </div>
+                <div class="chart-legend">
+                  <div class="legend-item">
+                    <div class="legend-color-box column-revenue"></div>
+                    <span>Pendapatan Usaha</span>
+                  </div>
+                  <div class="legend-item">
+                    <div class="legend-color-box column-profit"></div>
+                    <span>Laba/Rugi Bersih</span>
+                  </div>
+                </div>
+              </div>
+
+              <h3 class="section-title-premium"><i class="fa-solid fa-pie-chart"></i> Alokasi Penggunaan Dana IPO</h3>
+              <div id="modalUseOfProceeds" style="margin-bottom: 1.5rem;">
+                <!-- Dynamically filled with proceeds progress bars -->
+              </div>
+            </div>
+
+            <!-- Modal Right Side (Valuation, Rating form, Comments) -->
+            <div>
+              <h3 class="section-title-premium"><i class="fa-solid fa-square-poll-vertical"></i> Skor Kelayakan IPO
+                (Official Score)</h3>
+
+              <!-- Official Score Card -->
+              <div class="official-score-card">
+                <div class="official-score-header">
+                  <div class="score-stars-large" id="modalOfficialStars">⭐⭐⭐⭐</div>
+                  <div class="score-numeric-large" id="modalOfficialScoreNum">4.2 / 5.0</div>
+                </div>
+                <div class="official-score-verdict" id="modalOfficialVerdict">LAYAK INVESTASI</div>
+
+                <div class="official-score-breakdown" id="modalOfficialBreakdown">
+                  <!-- Dynamically populated parameters breakdown: Valuasi, Hype, Market, Underwriter, Owner, Proceeds -->
+                </div>
+              </div>
+
+              <h3 class="section-title-premium"><i class="fa-solid fa-scale-balanced"></i> Rincian Valuasi Pasar</h3>
+
+              <div class="valuation-meter-wrapper">
+                <div class="valuation-meter-header">
+                  <span>Price to Earnings (P/E)</span>
+                  <span id="valPeText" style="font-weight: 600;">18.5x (Rata-rata Ind: 22x)</span>
+                </div>
+                <div class="valuation-meter-bar-container">
+                  <div id="valPeFill" class="valuation-meter-bar-fill sentiment-positive" style="width: 50%;"></div>
+                  <div id="valPeMarker" class="valuation-meter-marker" style="left: 60%;" title="Rata-rata Industri">
+                  </div>
+                </div>
+              </div>
+
+              <div class="valuation-meter-wrapper" style="margin-bottom: 1.5rem;">
+                <div class="valuation-meter-header">
+                  <span>Price to Book Value (P/B)</span>
+                  <span id="valPbvText" style="font-weight: 600;">2.1x (Rata-rata Ind: 2.5x)</span>
+                </div>
+                <div class="valuation-meter-bar-container">
+                  <div id="valPbvFill" class="valuation-meter-bar-fill sentiment-positive" style="width: 50%;"></div>
+                  <div id="valPbvMarker" class="valuation-meter-marker" style="left: 70%;" title="Rata-rata Industri">
+                  </div>
+                </div>
+              </div>
+
+              <!-- General Stats Grid -->
+              <div class="detail-stats-grid">
+                <div class="detail-stat-card">
+                  <div class="stat-label">Underwriter</div>
+                  <div class="stat-value" id="modalUnderwriters"
+                    style="font-size: 0.85rem; font-weight: 500; margin-top: 0.25rem;">Mandiri Sekuritas, Indo Premier
+                  </div>
+                </div>
+                <div class="detail-stat-card">
+                  <div class="stat-label">Jumlah Saham</div>
+                  <div class="stat-value" id="modalSharesOffered" style="font-size: 1rem;">1.5 B Lembar</div>
+                </div>
+                <div class="detail-stat-card">
+                  <div class="stat-label">Estimasi Target Dana</div>
+                  <div class="stat-value" id="modalCapitalRaised" style="color: var(--primary);">Rp 375B - Rp 480B</div>
+                </div>
+                <div class="detail-stat-card">
+                  <div class="stat-label">Risiko Bisnis</div>
+                  <div class="stat-value" id="modalRiskFactor" style="color: var(--warning);">Medium</div>
+                </div>
+                <div class="detail-stat-card" style="grid-column: span 2;">
+                  <div class="stat-label"><i class="fa-solid fa-clock-rotate-left"></i> Track Record Underwriter</div>
+                  <div class="stat-value" id="modalUnderwriterTrackRecord"
+                    style="font-size: 0.82rem; font-weight: 600; color: var(--secondary); margin-top: 0.25rem; line-height: 1.45;">
+                    Rata-rata ARA 20%</div>
+                </div>
+                <div class="detail-stat-card" style="grid-column: span 2;">
+                  <div class="stat-label"><i class="fa-solid fa-user-tie"></i> Owner / Pengendali Perusahaan</div>
+                  <div class="stat-value" id="modalOwnerName"
+                    style="font-size: 0.9rem; font-weight: 600; color: var(--text-primary); margin-top: 0.25rem;">-
+                  </div>
+                  <div id="modalOwnerNotes"
+                    style="font-size: 0.78rem; color: var(--text-secondary); margin-top: 0.15rem; line-height: 1.35;">-
+                  </div>
+                </div>
+              </div>
+
+              <div id="modalRiskDetails"
+                style="font-size: 0.85rem; color: var(--text-secondary); background: var(--border-color); padding: 0.75rem; border-radius: 6px; margin-bottom: 1.5rem;">
+                Keterangan risiko...
+              </div>
+
+
+
+            </div>
+
+          </div>
+
+
+
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer Section -->
+    <footer>
+      <div>
+        <p>&copy; 2026 ipohack Indonesia. Data untuk kebutuhan simulasi & edukasi.</p>
+      </div>
+      <div>
+        <a href="https://e-ipo.co.id" target="_blank" style="margin-right: 1rem;"><i
+            class="fa-solid fa-external-link"></i> Website e-IPO Resmi</a>
+      </div>
+    </footer>
+
+  </div>
+
+  <!-- JavaScript Entry Point -->
+  <script type="module" src="app.js?v=6"></script>
+</body>
+
+</html>
