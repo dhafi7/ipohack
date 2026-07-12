@@ -2,7 +2,7 @@
 export const ipoData = [
   {
     id: "rans",
-    ticker: "dinaland my love",
+    ticker: "RANS",
     name: "PT Rans Entertainmen Indonesia Tbk",
     sector: "Consumer Cyclical",
     status: "allocation",
