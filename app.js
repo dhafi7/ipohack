@@ -351,6 +351,16 @@ function setupFilters() {
 
     renderDashboard();
   });
+
+  // Mobile filter toggle listener
+  const mobileFilterToggleBtn = document.getElementById("mobileFilterToggleBtn");
+  const filtersSidebar = document.querySelector(".filters-sidebar");
+  if (mobileFilterToggleBtn && filtersSidebar) {
+    mobileFilterToggleBtn.addEventListener("click", () => {
+      filtersSidebar.classList.toggle("active");
+      mobileFilterToggleBtn.classList.toggle("active");
+    });
+  }
 }
 
 function renderDashboard() {
