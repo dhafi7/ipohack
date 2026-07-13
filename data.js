@@ -18,14 +18,16 @@ export const ipoData = [
     underwriterTrackRecord: "Rata-rata performa IPO: +9% di hari pertama (Historis moderat, rawan aksi profit taking)",
     description: "PT Rans Entertainment Indonesia Tbk adalah perusahaan media kreatif, agensi talenta digital, rumah produksi (production house), dan bisnis gaya hidup (F&B serta olahraga) terintegrasi terkemuka di Indonesia yang dipimpin oleh tokoh publik ternama.",
     useOfProceeds: [
-      { purpose: "Ekspansi studio produksi & konten digital baru", percentage: 45, category: "ekspansi" },
-      { purpose: "Pengembangan outlet bisnis ritel & kafe baru", percentage: 35, category: "ekspansi" },
-      { purpose: "Modal kerja operasional umum", percentage: 20, category: "modal-kerja" }
+      { purpose: "Pembayaran lebih awal pokok utang ke bank BNI", percentage: 6.98, category: "bayar-utang" },
+      { purpose: "Belanja modal pembangunan Cipungland", percentage: 18.64, category: "modal-kerja" },
+      { purpose: "Capex untuk penyelenggaraan konser di berbagai kota", percentage: 37.61, category: "modal-kerja" }
+      { purpose: "Entitas baru dengan PT Feedloop Global Teknologi", percentage: 8.15, category: "ekspansi" },
+      { purpose: "Ekspansi usaha melalui akuisisi saham PT Rans Kosmetika Indonesia", percentage: 19.80, category: "ekspansi" }
     ],
     financials: [
-      { year: "2023", revenue: 180, netProfit: 15, assets: 250, liabilities: 80 },
-      { year: "2024", revenue: 240, netProfit: 22, assets: 310, liabilities: 95 },
-      { year: "2025", revenue: 320, netProfit: 35, assets: 420, liabilities: 110 }
+      { year: "2023", revenue: 438, netProfit: 84, assets: 517, liabilities: 199 },
+      { year: "2024", revenue: 411, netProfit: 97, assets: 591, liabilities: 157 },
+      { year: "2025", revenue: 353, netProfit: 57, assets: 461, liabilities: 120 }
     ],
     valuation: {
       peRatio: 31.0, // At midpoint price
@@ -65,14 +67,14 @@ export const ipoData = [
     underwriterTrackRecord: "Rata-rata performa IPO: +19.8% di hari pertama (Sangat kuat mengawal emiten retail/teknologi, likuiditas tinggi)",
     description: "PT Prodia Diagnostic Line Tbk mengoperasikan ekosistem perdagangan logistik kesehatan.",
     useOfProceeds: [
-      { purpose: "Otomatisasi pusat distribusi digital di Tangerang", percentage: 50, category: "ekspansi" },
-      { purpose: "Kampanye pemasaran regional & akuisisi merchant", percentage: 30, category: "modal-kerja" },
-      { purpose: "Belanja modal IT & infrastruktur server", percentage: 20, category: "ekspansi" }
+      { purpose: "Pelunasan pokok fasilitas kredit ke BCA dan PNBN", percentage: 62.57, category: "bayar-utang" },
+      { purpose: "Belanja Modal", percentage: 28.92, category: "modal-kerja" },
+      { purpose: "Modal Kerja Perseroan", percentage: 8.51, category: "modal-kerja" }
     ],
     financials: [
-      { year: "2023", revenue: 120, netProfit: 8, assets: 140, liabilities: 55 },
-      { year: "2024", revenue: 175, netProfit: 14, assets: 195, liabilities: 65 },
-      { year: "2025", revenue: 250, netProfit: 24, assets: 280, liabilities: 70 }
+      { year: "2023", revenue: 117.78, netProfit: 35.78, assets: 125, liabilities: 68.96 },
+      { year: "2024", revenue: 58.66, netProfit: 10, assets: 184, liabilities: 117.90 },
+      { year: "2025", revenue: 74.37, netProfit: 16.99, assets: 194, liabilities: 111.37 }
     ],
     valuation: {
       peRatio: 11.0,
@@ -116,14 +118,14 @@ export const ipoData = [
     underwriterTrackRecord: "Rata-rata performa IPO: +8.5% di hari pertama (Volatilitas tinggi, basis retail kuat sering langsung profit taking)",
     description: "PT Esa Medika Mandiri Tbk bergerak di bidang industri Kesehatan.",
     useOfProceeds: [
-      { purpose: "Pembangunan cold storage baru di Semarang & Medan", percentage: 60, category: "ekspansi" },
-      { purpose: "Pembelian mesin produksi berkapasitas tinggi", percentage: 25, category: "ekspansi" },
-      { purpose: "Modal kerja untuk pembelian bahan baku", percentage: 15, category: "modal-kerja" }
+      { purpose: "Pembayaran sebagian pokok pinjaman", percentage: 18.3, category: "bayar-utang" },
+      { purpose: "Pembiayaan modal pembangunan gedung pabrik Cikupa", percentage: 11.8, category: "ekspansi" },
+      { purpose: "Modal kerja perseroan", percentage: 68.7, category: "modal-kerja" }
     ],
     financials: [
-      { year: "2023", revenue: 95, netProfit: 6, assets: 110, liabilities: 45 },
-      { year: "2024", revenue: 130, netProfit: 9, assets: 135, liabilities: 50 },
-      { year: "2025", revenue: 185, netProfit: 13, assets: 170, liabilities: 55 }
+      { year: "2023", revenue: 173, netProfit: 1, assets: 341, liabilities: 285 },
+      { year: "2024", revenue: 385, netProfit: 11, assets: 714, liabilities: 641 },
+      { year: "2025", revenue: 455, netProfit: 32, assets: 564, liabilities: 419 }
     ],
     valuation: {
       peRatio: 25.8, // At midpoint price
