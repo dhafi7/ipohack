@@ -20,7 +20,7 @@ export const ipoData = [
     useOfProceeds: [
       { purpose: "Pembayaran lebih awal pokok utang ke bank BNI", percentage: 6.98, category: "bayar-utang" },
       { purpose: "Belanja modal pembangunan Cipungland", percentage: 18.64, category: "modal-kerja" },
-      { purpose: "Capex untuk penyelenggaraan konser di berbagai kota", percentage: 37.61, category: "modal-kerja" }
+      { purpose: "Capex untuk penyelenggaraan konser di berbagai kota", percentage: 37.61, category: "modal-kerja" },
       { purpose: "Entitas baru dengan PT Feedloop Global Teknologi", percentage: 8.15, category: "ekspansi" },
       { purpose: "Ekspansi usaha melalui akuisisi saham PT Rans Kosmetika Indonesia", percentage: 19.80, category: "ekspansi" }
     ],
