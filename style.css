@@ -246,6 +246,10 @@ main {
   .dashboard-layout {
     grid-template-columns: 1fr;
   }
+  
+  .filters-sidebar {
+    position: static;
+  }
 }
 
 /* Filter Sidebar */
