@@ -169,14 +169,15 @@ export const ipoData = [
     underwriterTrackRecord: "Rata-rata performa IPO: +16.5% di hari pertama (Sangat stabil, didukung institusi besar, jarang longsor)",
     description: "PT Nitrasanata Dharma Tbk Menyediakan jasa dan layanan kesehatan rumah sakit mata premium di Indonesia.",
     useOfProceeds: [
-      { purpose: "Penambahan 200 armada kurir listrik (EV)", percentage: 50, category: "ekspansi" },
-      { purpose: "Otomatisasi 5 hub pergudangan transit utama", percentage: 35, category: "ekspansi" },
-      { purpose: "Pengembangan sistem tracking AI real-time", percentage: 15, category: "modal-kerja" }
+      { purpose: "Pembayaran lebih awal pinjaman ke Bank BCA", percentage: 8, category: "bayar-utang" },
+      { purpose: "Pembayaran lebih awal pinjaman ke Bank HSBC Indonesia", percentage: 20, category: "bayar-utang" },
+      { purpose: "Disalurkan ke perusahaan anak Perseroan", percentage: 37, category: "modal-kerja" }
+      { purpose: "Modal kerja Perseroan", percentage: 35, category: "modal-kerja" }
     ],
     financials: [
-      { year: "2023", revenue: 310, netProfit: -10, assets: 220, liabilities: 140 },
-      { year: "2024", revenue: 420, netProfit: 11, assets: 280, liabilities: 165 },
-      { year: "2025", revenue: 580, netProfit: 28, assets: 390, liabilities: 190 }
+      { year: "2023", revenue: 825, netProfit: 127, assets: 1350, liabilities: 522 },
+      { year: "2024", revenue: 888, netProfit: 62, assets: 1420, liabilities: 611 },
+      { year: "2025", revenue: 927, netProfit: 73, assets: 1450, liabilities: 640 }
     ],
     valuation: {
       peRatio: 57.0,
@@ -220,14 +221,15 @@ export const ipoData = [
     underwriterTrackRecord: "Rata-rata performa IPO: +15.2% di hari pertama (Sangat terjaga, jarang ARB)",
     description: "PT Jeli Food Indonesia Tbk adalah produsen makanan ringan berbasis gelatin buah (jelly cup/straw) berkarakter kartun dengan penetrasi ekspor hingga ke Filipina dan Vietnam.",
     useOfProceeds: [
-      { purpose: "Investasi mesin manufaktur cetak jelly otomatis baru", percentage: 55, category: "ekspansi" },
-      { purpose: "Kampanye pemasaran terintegrasi", percentage: 25, category: "modal-kerja" },
-      { purpose: "Modal kerja umum pembelian bahan baku", percentage: 20, category: "modal-kerja" }
+      { purpose: "Penyertaan modal ke perusahaan anak, PT NPS dalam bentuk ekuitas", percentage: 51.04, category: "ekspansi" },
+      { purpose: "Belanja modal dalam rangka pembelian mesin", percentage: 18.36, category: "modal-kerja" },
+      { purpose: "Pembayaran sebagian pokok utang jangka pendek ke Bank Mandiri", percentage: 10.63, category: "bayar-utang" }
+      { purpose: "Digunakan sebagai modal kerja Perseroan", percentage: 19.97, category: "modal-kerja" }
     ],
     financials: [
-      { year: "2023", revenue: 140, netProfit: 9, assets: 120, liabilities: 40 },
-      { year: "2024", revenue: 180, netProfit: 13, assets: 150, liabilities: 45 },
-      { year: "2025", revenue: 225, netProfit: 17, assets: 190, liabilities: 50 }
+      { year: "2023", revenue: 839, netProfit: 1.7, assets: 120, liabilities: 40 },
+      { year: "2024", revenue: 788, netProfit: 12, assets: 150, liabilities: 45 },
+      { year: "2025", revenue: 753, netProfit: 39, assets: 190, liabilities: 50 }
     ],
     valuation: {
       peRatio: 31.1,
@@ -271,9 +273,8 @@ export const ipoData = [
     underwriterTrackRecord: "Rata-rata performa IPO: -4.5% di hari pertama (Historis underwrite sering langsung ARB)",
     description: "PT Bach Multi Global Tbk merupakan emiten kontraktor infrastruktur telekomunikasi nasional yang berfokus pada instalasi kabel serat optik bawah laut serta pemeliharaan menara seluler.",
     useOfProceeds: [
-      { purpose: "Pembelian kabel fiber optik bawah laut dari Jepang", percentage: 65, category: "ekspansi" },
-      { purpose: "Pelunasan utang obligasi jangka pendek sekuritas", percentage: 20, category: "bayar-utang" },
-      { purpose: "Modal kerja proyek operasional", percentage: 15, category: "modal-kerja" }
+      { purpose: "Modal Kerja Perseroan", percentage: 70.1, category: "modal-kerja" },
+      { purpose: "Pembayaran sebagian utang ke Bank BNLI", percentage: 29.9, category: "bayar-utang" },
     ],
     financials: [
       { year: "2023", revenue: 210, netProfit: 12, assets: 320, liabilities: 190 },
