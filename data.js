@@ -171,7 +171,7 @@ export const ipoData = [
     useOfProceeds: [
       { purpose: "Pembayaran lebih awal pinjaman ke Bank BCA", percentage: 8, category: "bayar-utang" },
       { purpose: "Pembayaran lebih awal pinjaman ke Bank HSBC Indonesia", percentage: 20, category: "bayar-utang" },
-      { purpose: "Disalurkan ke perusahaan anak Perseroan", percentage: 37, category: "modal-kerja" }
+      { purpose: "Disalurkan ke perusahaan anak Perseroan", percentage: 37, category: "modal-kerja" },
       { purpose: "Modal kerja Perseroan", percentage: 35, category: "modal-kerja" }
     ],
     financials: [
@@ -223,7 +223,7 @@ export const ipoData = [
     useOfProceeds: [
       { purpose: "Penyertaan modal ke perusahaan anak, PT NPS dalam bentuk ekuitas", percentage: 51.04, category: "ekspansi" },
       { purpose: "Belanja modal dalam rangka pembelian mesin", percentage: 18.36, category: "modal-kerja" },
-      { purpose: "Pembayaran sebagian pokok utang jangka pendek ke Bank Mandiri", percentage: 10.63, category: "bayar-utang" }
+      { purpose: "Pembayaran sebagian pokok utang jangka pendek ke Bank Mandiri", percentage: 10.63, category: "bayar-utang" },
       { purpose: "Digunakan sebagai modal kerja Perseroan", percentage: 19.97, category: "modal-kerja" }
     ],
     financials: [
